@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b3377a3a-4bf8-4c88-b393-c50a317f0370" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="mule-maven-demo-flow" doc:id="a768fc1f-fdd3-4371-97c2-54382b5c519b" >
+		<http:listener doc:name="Listener" doc:id="4bf71b60-1c5d-441d-92ec-5c0335cc6fbf" config-ref="HTTP_Listener_config" path="/mule/maven"/>
+		<logger level="INFO" doc:name="Start" doc:id="114f931b-2fd6-49d3-a4de-a1a0f0d8329e" message='#["Start"]'/>
+		<ee:transform doc:name="Hello World" doc:id="3d54b6ba-d2c9-4be8-9699-dea9e0142bca" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+"Hello World"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="End" doc:id="4e2271f3-4a52-4b39-8b77-9da080ba17ad" message='#["End: "++ payload]'/>
+	</flow>
+</mule>
