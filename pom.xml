@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
-	<artifactId>mule-maven-poc</artifactId>
+	<groupId>6cdbdae3-e4b9-407b-928b-c105d40fa3ac</groupId>
+	<artifactId>mule-maven-poc-api</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
-	<name>mule-maven-demo-api</name>
+	<name>mule-maven-demo-api-v1</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,6 +38,7 @@
 				      <connectedAppGrantType>${connectedApp.grantType}</connectedAppGrantType>
 				      <applicationName>${cloudhub.application.name}</applicationName>
 				      <environment>${environment}</environment>
+				      <region>${region}</region>
 				      <workers>${workers}</workers>
 				      <workerType>${workerType}</workerType>
 				      <objectStoreV2>true</objectStoreV2>
@@ -64,9 +65,9 @@
 
 	<repositories>
 		<repository>
-			<id>anypoint-exchange-v3</id>
+			<id>Repository</id>
 			<name>Anypoint Exchange</name>
-			<url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
+			<url>https://maven.anypoint.mulesoft.com/api/v2/maven</url>
 			<layout>default</layout>
 		</repository>
 		<repository>
@@ -88,5 +89,13 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	<distributionManagement>
+        <repository>
+            <id>Repository</id>
+            <name>Exchange Repository</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v1/organizations/6cdbdae3-e4b9-407b-928b-c105d40fa3ac/maven</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
 
 </project>
